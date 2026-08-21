@@ -1,0 +1,1958 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title id="page-title">SD Negeri 037 Tarakan - Cerdas, Berkarakter & Berprestasi</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        brand: {
+                            50: '#f0f9ff',
+                            100: '#e0f2fe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            800: '#0c4a6e',
+                            900: '#0f172a',
+                        },
+                        secondary: {
+                            500: '#f59e0b',
+                            600: '#d97706',
+                        }
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <!-- Font Inter & FontAwesome Icons -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        .glass-card {
+            background: rgba(255, 255, 255, 0.85);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .dark .glass-card {
+            background: rgba(15, 23, 42, 0.85);
+        }
+    </style>
+</head>
+<body class="bg-slate-50 dark:bg-slate-900 text-slate-800 dark:text-slate-100 transition-colors duration-300">
+
+    <!-- Admin Status Header Bar -->
+    <div id="admin-bar" class="hidden bg-slate-900 text-amber-400 text-xs py-2 px-4 border-b border-amber-500/30 sticky top-0 z-50 flex items-center justify-between shadow-md">
+        <div class="flex items-center gap-3">
+            <span class="bg-amber-500 text-slate-900 font-bold px-2 py-0.5 rounded text-[10px] uppercase tracking-wider">
+                <i class="fa-solid fa-user-shield mr-1"></i> Mode Admin Aktif
+            </span>
+            <span class="hidden sm:inline text-slate-300">Anda dapat mengedit seluruh komponen website melalui Panel Dashboard.</span>
+        </div>
+        <div class="flex items-center gap-2">
+            <button onclick="openAdminDashboard()" class="bg-brand-600 hover:bg-brand-500 text-white font-semibold px-3 py-1 rounded transition text-xs flex items-center gap-1">
+                <i class="fa-solid fa-gauge"></i>
+                <span>Panel Dashboard CMS</span>
+            </button>
+            <button onclick="logoutAdmin()" class="bg-red-600 hover:bg-red-500 text-white font-semibold px-3 py-1 rounded transition text-xs flex items-center gap-1">
+                <i class="fa-solid fa-right-from-bracket"></i>
+                <span>Keluar</span>
+            </button>
+        </div>
+    </div>
+
+    <!-- Top Announcement Banner -->
+    <div id="top-banner" class="bg-gradient-to-r from-brand-700 via-brand-600 to-indigo-700 text-white text-xs md:text-sm py-2 px-4 text-center flex justify-between items-center relative z-40">
+        <div class="container mx-auto flex items-center justify-center gap-2">
+            <span class="bg-secondary-500 text-xs font-bold px-2 py-0.5 rounded-full uppercase tracking-wider text-slate-900">Info Sekolah</span>
+            <span id="banner-text">Pendaftaran Peserta Didik Baru (PPDB) T.A 2026/2027 telah dibuka!</span>
+            <a href="#ppdb" class="underline font-semibold hover:text-secondary-500 transition ml-2">Daftar Sekarang &rarr;</a>
+        </div>
+        <button onclick="document.getElementById('top-banner').remove()" class="text-white hover:text-slate-300 p-1" title="Tutup">
+            <i class="fa-solid fa-xmark"></i>
+        </button>
+    </div>
+
+    <!-- Header / Navbar -->
+    <header class="sticky top-0 z-30 w-full glass-card border-b border-slate-200 dark:border-slate-800 shadow-sm transition-all">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" class="flex items-center gap-3 group">
+                <div class="w-11 h-11 bg-gradient-to-tr from-brand-600 to-indigo-600 rounded-xl flex items-center justify-center text-white text-xl font-black shadow-md group-hover:scale-105 transition-transform">
+                    <i class="fa-solid fa-graduation-cap"></i>
+                </div>
+                <div>
+                    <span id="header-school-name" class="block text-lg font-bold leading-tight tracking-tight text-brand-900 dark:text-white">SD Negeri 037 Tarakan</span>
+                    <span id="header-school-sub" class="block text-xs font-medium text-brand-600 dark:text-brand-400">NUSANTARA</span>
+                </div>
+            </a>
+
+            <!-- Desktop Menu -->
+            <nav class="hidden lg:flex items-center gap-7 text-sm font-medium">
+                <a href="#beranda" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Beranda</a>
+                <a href="#profil" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Profil</a>
+                <a href="#akademik" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Akademik</a>
+                <a href="#fasilitas" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Fasilitas</a>
+                <a href="#berita" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Berita</a>
+                <a href="#galeri" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Galeri</a>
+                <a href="#guru" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Guru</a>
+                <a href="#kontak" class="hover:text-brand-600 dark:hover:text-brand-400 transition">Kontak</a>
+            </nav>
+
+            <!-- Action Buttons -->
+            <div class="hidden sm:flex items-center gap-3">
+                <button id="theme-toggle" class="w-10 h-10 rounded-xl border border-slate-200 dark:border-slate-700 flex items-center justify-center text-slate-600 dark:text-slate-300 hover:bg-slate-100 dark:hover:bg-slate-800 transition" title="Ganti Tema">
+                    <i id="theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+                <a href="#ppdb" class="bg-brand-600 hover:bg-brand-700 text-white text-sm font-semibold px-5 py-2.5 rounded-xl shadow-md hover:shadow-lg transition transform hover:-translate-y-0.5 flex items-center gap-2">
+                    <i class="fa-solid fa-user-plus"></i>
+                    <span>PPDB Online</span>
+                </a>
+            </div>
+
+            <!-- Mobile Menu Button -->
+            <div class="flex items-center gap-2 lg:hidden">
+                <button id="mobile-theme-toggle" class="p-2 text-slate-600 dark:text-slate-300">
+                    <i id="mobile-theme-icon" class="fa-solid fa-moon"></i>
+                </button>
+                <button id="menu-btn" class="p-2.5 rounded-xl border border-slate-200 dark:border-slate-700 text-slate-700 dark:text-slate-200 hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Drawer Menu -->
+        <div id="mobile-menu" class="hidden lg:hidden border-b border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 px-6 py-4 space-y-3">
+            <a href="#beranda" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Beranda</a>
+            <a href="#profil" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Profil Sekolah</a>
+            <a href="#akademik" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Akademik & Jurusan</a>
+            <a href="#fasilitas" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Fasilitas</a>
+            <a href="#berita" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Berita & Informasi</a>
+            <a href="#galeri" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Galeri Foto</a>
+            <a href="#guru" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Tenaga Pendidik</a>
+            <a href="#kontak" class="block py-2 font-medium border-b border-slate-100 dark:border-slate-800">Kontak & Lokasi</a>
+            <div class="pt-2">
+                <a href="#ppdb" class="w-full text-center bg-brand-600 text-white font-semibold py-3 rounded-xl block shadow-md">
+                    <i class="fa-solid fa-user-plus mr-2"></i>Daftar PPDB Online
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section id="beranda" class="relative py-20 lg:py-28 overflow-hidden bg-gradient-to-b from-brand-50 via-slate-50 to-white dark:from-slate-950 dark:via-slate-900 dark:to-slate-900">
+        <div class="absolute top-0 right-0 -mr-20 -mt-20 w-96 h-96 bg-brand-500/10 rounded-full blur-3xl pointer-events-none"></div>
+        <div class="absolute bottom-0 left-0 -ml-20 -mb-20 w-96 h-96 bg-indigo-500/10 rounded-full blur-3xl pointer-events-none"></div>
+
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                <!-- Hero Text Left -->
+                <div class="lg:col-span-7 space-y-6 text-center lg:text-left">
+                    <div class="inline-flex items-center gap-2 bg-brand-100 dark:bg-brand-900/50 border border-brand-200 dark:border-brand-800 px-4 py-1.5 rounded-full text-brand-700 dark:text-brand-300 text-xs sm:text-sm font-semibold">
+                        <i class="fa-solid fa-award text-secondary-500"></i>
+                        <span id="hero-badge">Sekolah Rujukan Nasional Akreditasi A</span>
+                    </div>
+
+                    <h1 id="hero-title" class="text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-slate-900 dark:text-white leading-[1.15]">
+                        Mewujudkan Generasi <span class="bg-gradient-to-r from-brand-600 to-indigo-600 bg-clip-text text-transparent">Cerdas, Kreatif & Berkarakter</span>
+                    </h1>
+
+                    <p class="text-slate-600 dark:text-slate-300 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        <span id="hero-tagline-text">SD Negeri 037 Tarakan berkomitmen memberikan pendidikan berkualitas tinggi berbasis teknologi, imtaq, dan wawasan global untuk mempersiapkan pemimpin masa depan.</span>
+                    </p>
+
+                    <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-2">
+                        <a href="#ppdb" class="w-full sm:w-auto bg-brand-600 hover:bg-brand-700 text-white font-bold px-8 py-4 rounded-xl shadow-lg hover:shadow-xl transition transform hover:-translate-y-0.5 text-center flex items-center justify-center gap-3">
+                            <span>Pendaftaran Siswa Baru</span>
+                            <i class="fa-solid fa-arrow-right"></i>
+                        </a>
+                        <a href="#profil" class="w-full sm:w-auto bg-white dark:bg-slate-800 hover:bg-slate-100 dark:hover:bg-slate-700 text-slate-800 dark:text-slate-200 font-semibold px-8 py-4 rounded-xl border border-slate-200 dark:border-slate-700 transition text-center flex items-center justify-center gap-2">
+                            <i class="fa-regular fa-circle-play text-brand-600"></i>
+                            <span>Jelajahi Profil</span>
+                        </a>
+                    </div>
+
+                    <!-- Quick Key Stats -->
+                    <div class="pt-8 grid grid-cols-2 sm:grid-cols-4 gap-4 border-t border-slate-200 dark:border-slate-800">
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-600 dark:text-brand-400">1,250+</div>
+                            <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Siswa Aktif</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-600 dark:text-brand-400">75+</div>
+                            <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Guru Profesional</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-600 dark:text-brand-400">24+</div>
+                            <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Ekstrakurikuler</div>
+                        </div>
+                        <div>
+                            <div class="text-2xl sm:text-3xl font-extrabold text-brand-600 dark:text-brand-400">98%</div>
+                            <div class="text-xs sm:text-sm text-slate-500 dark:text-slate-400 font-medium">Kelulusan PTN</div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Hero Image Right -->
+                <div class="lg:col-span-5 relative">
+                    <div class="relative mx-auto max-w-md lg:max-w-none">
+                        <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white dark:border-slate-800 group">
+                            <img id="hero-img" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80" 
+                                 onerror="this.src='https://placehold.co/800x1000/0284c7/white?text=SMA+Nusantara'" 
+                                 alt="Siswa Belajar" class="w-full h-[450px] object-cover group-hover:scale-105 transition duration-500">
+                            <div class="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-transparent to-transparent flex flex-col justify-end p-6 text-white">
+                                <span class="bg-secondary-500 text-slate-900 font-bold text-xs px-3 py-1 rounded-full w-max mb-2">Prestasi Terkini</span>
+                                <h3 class="font-bold text-lg leading-snug">Juara 1 Olimpiade Sains Nasional (OSN) Bidang Informatika 2025</h3>
+                            </div>
+                        </div>
+
+                        <!-- Badge Overlay Floating Left -->
+                        <div class="absolute -bottom-6 -left-6 bg-white dark:bg-slate-800 p-4 rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700 hidden sm:flex items-center gap-4 max-w-xs">
+                            <div class="w-12 h-12 rounded-xl bg-emerald-100 dark:bg-emerald-900/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-xl font-bold">
+                                <i class="fa-solid fa-check-double"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Akreditasi A Unggul</h4>
+                                <p class="text-xs text-slate-500 dark:text-slate-400">BAN-S/M No. 134/BAN-SM/2024</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sambutan Kepala Sekolah & Visi Misi -->
+    <section id="profil" class="py-16 bg-white dark:bg-slate-900 border-y border-slate-100 dark:border-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="max-w-5xl mx-auto bg-brand-50/50 dark:bg-slate-800/50 rounded-3xl p-8 sm:p-12 border border-brand-100 dark:border-slate-700/60 shadow-sm flex flex-col md:flex-row gap-8 items-center">
+                <div class="w-40 h-40 sm:w-52 sm:h-52 rounded-2xl overflow-hidden shadow-lg flex-shrink-0 border-4 border-white dark:border-slate-700">
+                    <img id="principal-img" src="https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80" 
+                         onerror="this.src='https://placehold.co/400x400/0369a1/white?text=Kepala+Sekolah'" 
+                         alt="Kepala Sekolah" class="w-full h-full object-cover">
+                </div>
+                <div class="space-y-4 text-center md:text-left">
+                    <div class="text-brand-600 dark:text-brand-400 font-semibold text-sm uppercase tracking-wider">Sambutan Kepala Sekolah</div>
+                    <h2 id="principal-name" class="text-2xl sm:text-3xl font-bold text-slate-900 dark:text-white">Dr. H. Ahmad Wijaya, M.Pd.</h2>
+                    <blockquote id="principal-speech" class="text-slate-600 dark:text-slate-300 italic text-sm sm:text-base leading-relaxed">
+                        "Selamat datang di portal resmi SD Negeri 037 Tarakan. Kami meyakini bahwa setiap anak memiliki potensi unik. Tugas kami adalah membimbing, memfasilitasi, dan menginspirasi mereka untuk tumbuh menjadi pribadi yang cerdas secara intelektual, matang secara emosional, dan kuat secara spiritual."
+                    </blockquote>
+                    <div class="pt-2">
+                        <button onclick="openModal('modal-visi-misi')" class="text-brand-600 dark:text-brand-400 font-bold hover:underline inline-flex items-center gap-1 text-sm">
+                            <span>Lihat Visi, Misi & Sejarah Sekolah</span>
+                            <i class="fa-solid fa-arrow-right-long"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Akademik / Jurusan -->
+    <section id="akademik" class="py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-wider">Program Keahlian</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Peminatan & Akademik Unggulan</h2>
+                <p class="text-slate-600 dark:text-slate-400 text-sm sm:text-base">
+                    Kurikulum Merdeka terintegrasi dengan pembelajaran berbasis STEM dan pendidikan karakter.
+                </p>
+            </div>
+
+            <div id="majors-grid" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Dynamically rendered via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Fasilitas Sekolah -->
+    <section id="fasilitas" class="py-20 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-end justify-between mb-12">
+                <div>
+                    <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-wider">Sarana & Prasarana</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-2">Fasilitas Berstandar Modern</h2>
+                </div>
+                <p class="text-slate-500 dark:text-slate-400 text-sm max-w-md mt-4 md:mt-0">
+                    Menyediakan lingkungan belajar yang aman, nyaman, dan kondusif didukung fasilitas mutakhir.
+                </p>
+            </div>
+
+            <div id="facility-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <!-- Dynamically rendered via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Berita & Pengumuman Dynamic Container -->
+    <section id="berita" class="py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row md:items-center justify-between mb-12 gap-4">
+                <div>
+                    <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-wider">Kabar Terbaru</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white mt-1">Berita & Pengumuman</h2>
+                </div>
+
+                <!-- Tab Controls -->
+                <div class="flex bg-white dark:bg-slate-900 p-1.5 rounded-xl border border-slate-200 dark:border-slate-800 w-max self-start md:self-auto">
+                    <button id="btn-tab-berita" onclick="switchNewsTab('berita')" class="px-5 py-2 text-sm font-semibold rounded-lg bg-brand-600 text-white transition">Berita Sekolah</button>
+                    <button id="btn-tab-pengumuman" onclick="switchNewsTab('pengumuman')" class="px-5 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition">Pengumuman Official</button>
+                </div>
+            </div>
+
+            <!-- Tab Content Berita -->
+            <div id="tab-berita" class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Dynamically rendered via JS -->
+            </div>
+
+            <!-- Tab Content Pengumuman -->
+            <div id="tab-pengumuman" class="hidden space-y-4">
+                <!-- Dynamically rendered via JS -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Galeri Foto -->
+    <section id="galeri" class="py-20 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-12 space-y-3">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-wider">Dokumentasi</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Galeri Kegiatan Sekolah</h2>
+            </div>
+
+            <!-- Filter Categories -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-10">
+                <button onclick="filterGallery('all')" class="gallery-filter active px-4 py-2 rounded-xl text-xs font-semibold bg-brand-600 text-white transition">Semua Foto</button>
+                <button onclick="filterGallery('akademik')" class="gallery-filter px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">Akademik</button>
+                <button onclick="filterGallery('ekstra')" class="gallery-filter px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">Ekstrakurikuler</button>
+                <button onclick="filterGallery('event')" class="gallery-filter px-4 py-2 rounded-xl text-xs font-semibold bg-slate-100 dark:bg-slate-800 text-slate-600 dark:text-slate-300 hover:bg-slate-200 transition">Acara & Seni</button>
+            </div>
+
+            <div id="gallery-grid" class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Dynamically rendered via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Tenaga Pendidik / Guru -->
+    <section id="guru" class="py-20 bg-slate-50 dark:bg-slate-950">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center max-w-2xl mx-auto mb-16 space-y-3">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-wider">Tim Pengajar</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-slate-900 dark:text-white">Guru & Pendidik Berkualitas</h2>
+            </div>
+
+            <div id="teacher-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6">
+                <!-- Dynamically rendered via JavaScript -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Formulir PPDB Online -->
+    <section id="ppdb" class="py-20 bg-gradient-to-br from-brand-900 via-slate-900 to-indigo-950 text-white relative overflow-hidden">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+            <div class="max-w-3xl mx-auto bg-slate-900/80 backdrop-blur-xl p-8 sm:p-12 rounded-3xl border border-slate-700/60 shadow-2xl">
+                <div class="text-center space-y-3 mb-10">
+                    <span class="bg-secondary-500/20 text-secondary-400 font-bold text-xs px-3 py-1 rounded-full uppercase tracking-wider">Formulir Pendaftaran</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold">PPDB Online T.A 2026/2027</h2>
+                    <p class="text-slate-300 text-sm">Isi formulir berikut dengan teliti untuk melakukan pendaftaran awal secara mandiri.</p>
+                </div>
+
+                <form id="ppdbForm" onsubmit="handlePPDBSubmit(event)" class="space-y-6">
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Nama Lengkap Siswa *</label>
+                            <input id="ppdb-nama" type="text" required placeholder="Contoh: Muhammad Rizky" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">NISN *</label>
+                            <input id="ppdb-nisn" type="number" required placeholder="10 Digit NISN" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Asal SMP/MTs *</label>
+                            <input id="ppdb-asal" type="text" required placeholder="Contoh: SMP Negeri 1 Nusantara" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Peminatan Jurusan *</label>
+                            <select id="ppdb-jurusan" required class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                                <option value="">-- Pilih Peminatan --</option>
+                                <option value="MIPA">MIPA (Matematika & IPA)</option>
+                                <option value="IPS">IPS (Ilmu Pengetahuan Sosial)</option>
+                                <option value="BAHASA">Bahasa & Budaya</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">No. WhatsApp (Aktif) *</label>
+                            <input id="ppdb-wa" type="tel" required placeholder="081234567890" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Rata-Rata Rapor Semester 1-5 *</label>
+                            <input id="ppdb-nilai" type="number" step="0.01" min="0" max="100" required placeholder="Contoh: 88.50" class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500">
+                        </div>
+                    </div>
+
+                    <div>
+                        <label class="block text-xs font-semibold uppercase tracking-wider text-slate-300 mb-2">Alamat Rumah Lengkap</label>
+                        <textarea id="ppdb-alamat" rows="3" placeholder="Jl. Merdeka No. 45, RT 02/RW 05..." class="w-full bg-slate-800/90 border border-slate-700 rounded-xl px-4 py-3 text-sm text-white focus:outline-none focus:ring-2 focus:ring-brand-500"></textarea>
+                    </div>
+
+                    <button type="submit" class="w-full bg-brand-500 hover:bg-brand-600 text-white font-bold py-4 rounded-xl shadow-lg hover:shadow-xl transition flex items-center justify-center gap-2 text-base">
+                        <i class="fa-solid fa-paper-plane"></i>
+                        <span>Kirim Pendaftaran PPDB</span>
+                    </button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="py-20 bg-white dark:bg-slate-900">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8 max-w-4xl">
+            <div class="text-center mb-12">
+                <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-wider">Pertanyaan Umum</span>
+                <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white mt-1">Sering Ditanyakan (FAQ)</h2>
+            </div>
+
+            <div class="space-y-4" id="faq-accordion">
+                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFAQ(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex justify-between items-center bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 transition">
+                        <span>Kapan pendaftaran PPDB gelombang 1 ditutup?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-5 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 leading-relaxed">
+                        Pendaftaran PPDB Gelombang 1 dibuka hingga tanggal 30 Juni 2026. Setelah batas waktu tersebut, verifikasi dokumen fisik akan dilaksanakan secara serentak di kampus sekolah.
+                    </div>
+                </div>
+
+                <div class="border border-slate-200 dark:border-slate-800 rounded-2xl overflow-hidden">
+                    <button onclick="toggleFAQ(this)" class="w-full p-5 text-left font-bold text-slate-900 dark:text-white flex justify-between items-center bg-slate-50 dark:bg-slate-800/50 hover:bg-slate-100 transition">
+                        <span>Apakah tersedia beasiswa untuk siswa berprestasi?</span>
+                        <i class="fa-solid fa-chevron-down text-sm transition-transform duration-300"></i>
+                    </button>
+                    <div class="hidden p-5 text-sm text-slate-600 dark:text-slate-400 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 leading-relaxed">
+                        Ya, kami menyediakan Beasiswa Jalur Prestasi Akademik dan Non-Akademik (Olahraga/Seni tingkat Provinsi/Nasional) berupa pembebasan biaya SPP selama 1 hingga 3 tahun penuh.
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Kontak & Peta Lokasi -->
+    <section id="kontak" class="py-20 bg-slate-50 dark:bg-slate-950 border-t border-slate-200 dark:border-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+                <!-- Contact Info Left -->
+                <div class="lg:col-span-5 space-y-6">
+                    <span class="text-brand-600 dark:text-brand-400 font-bold text-sm uppercase tracking-wider">Hubungi Kami</span>
+                    <h2 class="text-3xl font-extrabold text-slate-900 dark:text-white">Lokasi & Informasi Sekretariat</h2>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed">
+                        Silakan hubungi kami melalui kontak di bawah ini atau kunjungi kampus kami pada jam kerja operasional (Senin - Jumat, 07:00 - 15:30 WIB).
+                    </p>
+
+                    <div class="space-y-4 pt-2">
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-location-dot"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Alamat Kampus</h4>
+                                <p id="contact-address" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">Jl. Pendidikan No. 123, Kel. Nusantara, Kota Pendidikan, Indonesia 12345</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-phone"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Telepon / Fax</h4>
+                                <p id="contact-phone" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">(021) 555-0192 / (021) 555-0193</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start gap-4">
+                            <div class="w-10 h-10 rounded-xl bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 flex items-center justify-center flex-shrink-0">
+                                <i class="fa-solid fa-envelope"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-sm text-slate-900 dark:text-white">Email Resmi</h4>
+                                <p id="contact-email" class="text-xs text-slate-500 dark:text-slate-400 mt-0.5">info@sman1nusantara.sch.id</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Google Map -->
+                <div class="lg:col-span-7 bg-white dark:bg-slate-900 p-4 rounded-3xl border border-slate-200 dark:border-slate-800 shadow-sm">
+                    <div class="w-full h-80 rounded-2xl overflow-hidden bg-slate-200 dark:bg-slate-800 relative">
+                        <iframe id="contact-maps-iframe" title="Lokasi Sekolah" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.28318854728!2d106.7596291!3d-6.2297465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e80f631d23%3A0x8221800e39c4a787!2sJakarta!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid" class="w-full h-full border-0" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900 text-slate-400 py-12 border-t border-slate-800">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+                <div class="space-y-4">
+                    <div class="flex items-center gap-3">
+                        <div class="w-9 h-9 bg-brand-600 rounded-xl flex items-center justify-center text-white text-lg font-bold">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                        </div>
+                        <span id="footer-school-title" class="text-lg font-bold text-white">SD Negeri 037 tarakan</span>
+                    </div>
+                    <p class="text-xs leading-relaxed">
+                        Sekolah Menengah Atas unggulan nasional yang berfokus pada pembentukan karakter berakhlak mulia dan prestasi akademik tingkat internasional.
+                    </p>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-sm mb-4">Tautan Cepat</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#profil" class="hover:text-white transition">Profil & Sejarah</a></li>
+                        <li><a href="#akademik" class="hover:text-white transition">Kurikulum & Jurusan</a></li>
+                        <li><a href="#fasilitas" class="hover:text-white transition">Fasilitas Kampus</a></li>
+                        <li><a href="#ppdb" class="hover:text-white transition">Info PPDB Online</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-sm mb-4">Layanan Siswa</h5>
+                    <ul class="space-y-2 text-xs">
+                        <li><a href="#" class="hover:text-white transition">Portal E-Learning</a></li>
+                        <li><a href="#" class="hover:text-white transition">Perpustakaan Digital</a></li>
+                        <li><a href="#" class="hover:text-white transition">Jadwal Pelajaran</a></li>
+                        <li><a href="#" class="hover:text-white transition">Konseling Online</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h5 class="text-white font-bold text-sm mb-4">Media Sosial & Admin</h5>
+                    <div class="flex gap-3 mb-4">
+                        <a id="footer-fb" href="#" target="_blank" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition"><i class="fa-brands fa-facebook-f"></i></a>
+                        <a id="footer-ig" href="#" target="_blank" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition"><i class="fa-brands fa-instagram"></i></a>
+                        <a id="footer-yt" href="#" target="_blank" class="w-9 h-9 rounded-xl bg-slate-800 hover:bg-brand-600 hover:text-white flex items-center justify-center transition"><i class="fa-brands fa-youtube"></i></a>
+                    </div>
+                    <button onclick="openAdminLogin()" class="text-xs font-semibold bg-slate-800 hover:bg-slate-700 text-amber-400 px-3 py-2 rounded-xl transition flex items-center gap-2 border border-amber-500/30">
+                        <i class="fa-solid fa-lock"></i>
+                        <span>Login Admin Sekolah</span>
+                    </button>
+                </div>
+            </div>
+
+            <div class="pt-8 border-t border-slate-800 text-center text-xs text-slate-500">
+                <p>&copy; 2026 <span id="footer-copyright">SD Negeri 037 Tarakan</span>. Seluruh Hak Cipta Dilindungi.</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a id="floating-wa" href="https://wa.me/6281234567890?text=Halo%20Admin%20PPDB%20Sekolah" target="_blank" class="fixed bottom-6 right-6 bg-emerald-500 hover:bg-emerald-600 text-white w-14 h-14 rounded-full shadow-2xl flex items-center justify-center text-2xl z-40 transition transform hover:scale-110">
+        <i class="fa-brands fa-whatsapp"></i>
+    </a>
+
+    <!-- Modal Generic -->
+    <div id="modal-container" class="fixed inset-0 bg-slate-950/70 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-xl w-full p-6 sm:p-8 relative shadow-2xl border border-slate-200 dark:border-slate-800 animate-in fade-in zoom-in duration-200">
+            <button onclick="closeModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+            <div id="modal-content"></div>
+        </div>
+    </div>
+
+    <!-- Lightbox Modal -->
+    <div id="lightbox-modal" class="fixed inset-0 bg-slate-950/90 z-50 hidden flex-col items-center justify-center p-4" onclick="closeLightbox()">
+        <img id="lightbox-img" src="" alt="" class="max-w-full max-h-[80vh] rounded-2xl object-contain shadow-2xl mb-4">
+        <p id="lightbox-caption" class="text-white font-medium text-sm text-center"></p>
+    </div>
+
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-sm z-50 hidden items-center justify-center p-4">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-md w-full p-8 relative shadow-2xl border border-slate-200 dark:border-slate-800">
+            <button onclick="closeAdminLogin()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-white p-2">
+                <i class="fa-solid fa-xmark text-xl"></i>
+            </button>
+
+            <div class="text-center mb-6">
+                <div class="w-14 h-14 bg-amber-100 dark:bg-amber-900/50 text-amber-600 rounded-2xl flex items-center justify-center text-2xl font-bold mx-auto mb-3">
+                    <i class="fa-solid fa-user-gear"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Login Admin Sekolah</h3>
+                <p class="text-xs text-slate-500 dark:text-slate-400 mt-1">Masukkan kata sandi admin untuk mengelola seluruh komponen website</p>
+            </div>
+
+            <form onsubmit="handleAdminLogin(event)" class="space-y-4">
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 dark:text-slate-400 mb-1">Username Admin</label>
+                    <input id="admin-username" type="text" value="admin" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-slate-900 dark:text-white">
+                </div>
+
+                <div>
+                    <label class="block text-xs font-semibold uppercase text-slate-600 dark:text-slate-400 mb-1">Password</label>
+                    <input id="admin-password" type="password" placeholder="••••••••" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-amber-500 text-slate-900 dark:text-white">
+                    <p class="text-[11px] text-slate-400 mt-1">Password bawaan: <code class="bg-slate-200 dark:bg-slate-800 px-1.5 py-0.5 rounded text-amber-600 font-mono">admin123</code></p>
+                </div>
+
+                <div id="admin-login-error" class="hidden text-xs text-red-500 font-semibold text-center">
+                    Username atau Password salah!
+                </div>
+
+                <button type="submit" class="w-full bg-amber-500 hover:bg-amber-600 text-slate-900 font-bold py-3.5 rounded-xl shadow-lg transition text-sm flex items-center justify-center gap-2">
+                    <i class="fa-solid fa-right-to-bracket"></i>
+                    <span>Masuk ke Dashboard CMS</span>
+                </button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Admin CMS Dashboard Modal -->
+    <div id="admin-dashboard-modal" class="fixed inset-0 bg-slate-950/80 backdrop-blur-md z-50 hidden flex items-center justify-center p-3 sm:p-6 overflow-y-auto">
+        <div class="bg-white dark:bg-slate-900 rounded-3xl max-w-5xl w-full max-h-[92vh] flex flex-col shadow-2xl border border-slate-200 dark:border-slate-800 overflow-hidden">
+            
+            <!-- Dashboard Header -->
+            <div class="bg-slate-900 text-white p-5 flex justify-between items-center border-b border-slate-800 flex-shrink-0">
+                <div class="flex items-center gap-3">
+                    <div class="w-10 h-10 rounded-xl bg-amber-500 text-slate-900 flex items-center justify-center text-lg font-bold">
+                        <i class="fa-solid fa-sliders"></i>
+                    </div>
+                    <div>
+                        <h3 class="font-bold text-lg">Panel Kontrol CMS Website Sekolah</h3>
+                        <p class="text-xs text-slate-400">Edit & kelola seluruh komponen tampilan website secara real-time</p>
+                    </div>
+                </div>
+                <button onclick="closeAdminDashboard()" class="text-slate-400 hover:text-white p-2 text-xl">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+
+            <!-- Dashboard Navigation Tabs -->
+            <div class="flex border-b border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-950 px-4 gap-2 overflow-x-auto flex-shrink-0">
+                <button id="cms-tab-ppdb-btn" onclick="switchCMSTab('ppdb')" class="py-3 px-3 text-xs font-bold border-b-2 border-brand-600 text-brand-600 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-users"></i><span>PPDB Online</span>
+                    <span id="ppdb-badge-count" class="bg-brand-100 text-brand-700 dark:bg-brand-900/60 dark:text-brand-300 text-[10px] px-2 py-0.5 rounded-full">0</span>
+                </button>
+                <button id="cms-tab-profile-btn" onclick="switchCMSTab('profile')" class="py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-school"></i><span>Profil & Sambutan</span>
+                </button>
+                <button id="cms-tab-majors-btn" onclick="switchCMSTab('majors')" class="py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-book-open"></i><span>Akademik & Jurusan</span>
+                </button>
+                <button id="cms-tab-facilities-btn" onclick="switchCMSTab('facilities')" class="py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-building-columns"></i><span>Fasilitas</span>
+                </button>
+                <button id="cms-tab-news-btn" onclick="switchCMSTab('news')" class="py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-newspaper"></i><span>Berita & Info</span>
+                </button>
+                <button id="cms-tab-gallery-btn" onclick="switchCMSTab('gallery')" class="py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-images"></i><span>Galeri Foto</span>
+                </button>
+                <button id="cms-tab-teachers-btn" onclick="switchCMSTab('teachers')" class="py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-chalkboard-user"></i><span>Guru & Staf</span>
+                </button>
+                <button id="cms-tab-contact-btn" onclick="switchCMSTab('contact')" class="py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap">
+                    <i class="fa-solid fa-map-location-dot"></i><span>Kontak & Lokasi</span>
+                </button>
+            </div>
+
+            <!-- Dashboard Body -->
+            <div class="p-6 overflow-y-auto flex-1 space-y-6">
+                
+                <!-- CMS TAB 1: PPDB Submissions -->
+                <div id="cms-tab-ppdb" class="space-y-4">
+                    <div class="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                        <div>
+                            <h4 class="font-bold text-base text-slate-900 dark:text-white">Data Masuk PPDB Online</h4>
+                            <p class="text-xs text-slate-500 dark:text-slate-400">Daftar calon siswa yang mendaftar melalui formulir website.</p>
+                        </div>
+                        <div class="flex gap-2">
+                            <button onclick="exportPPDBToCSV()" class="bg-emerald-600 hover:bg-emerald-700 text-white text-xs font-semibold px-4 py-2 rounded-xl transition flex items-center gap-2">
+                                <i class="fa-solid fa-file-excel"></i><span>Unduh Rekap (CSV)</span>
+                            </button>
+                            <button onclick="clearAllPPDB()" class="bg-red-100 dark:bg-red-900/30 text-red-600 dark:text-red-300 text-xs font-semibold px-4 py-2 rounded-xl hover:bg-red-200 transition">Reset All</button>
+                        </div>
+                    </div>
+
+                    <div class="overflow-x-auto border border-slate-200 dark:border-slate-800 rounded-2xl">
+                        <table class="w-full text-left text-xs">
+                            <thead class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-bold uppercase">
+                                <tr>
+                                    <th class="p-3">No. Reg</th>
+                                    <th class="p-3">Nama Siswa</th>
+                                    <th class="p-3">NISN</th>
+                                    <th class="p-3">Asal Sekolah</th>
+                                    <th class="p-3">Jurusan</th>
+                                    <th class="p-3">WhatsApp</th>
+                                    <th class="p-3">Nilai</th>
+                                    <th class="p-3">Aksi</th>
+                                </tr>
+                            </thead>
+                            <tbody id="ppdb-table-body" class="divide-y divide-slate-100 dark:divide-slate-800 text-slate-600 dark:text-slate-300">
+                                <!-- Rendered via JS -->
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <!-- CMS TAB 2: Profil & Sambutan Sekolah -->
+                <div id="cms-tab-profile" class="hidden space-y-4">
+                    <h4 class="font-bold text-base text-slate-900 dark:text-white">Edit Profil Utama, Sambutan & Visi-Misi</h4>
+                    <form onsubmit="handleSaveProfileSettings(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nama Utama Sekolah</label>
+                                <input id="set-school-name" type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nama Sub / Kota</label>
+                                <input id="set-school-sub" type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Teks Badge Hero</label>
+                                <input id="set-hero-badge" type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Top Banner Pengumuman Running</label>
+                                <input id="set-banner-text" type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Tagline / Deskripsi Singkat Hero</label>
+                            <textarea id="set-hero-tagline" rows="2" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">URL Foto Hero Utama</label>
+                                <input id="set-hero-img" type="url" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">URL Foto Kepala Sekolah</label>
+                                <input id="set-principal-img" type="url" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nama & Gelar Kepala Sekolah</label>
+                            <input id="set-principal-name" type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Sambutan Kepala Sekolah</label>
+                            <textarea id="set-principal-speech" rows="3" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs"></textarea>
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Visi Sekolah</label>
+                                <textarea id="set-visi-text" rows="3" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs"></textarea>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Misi Sekolah (Pisahkan dengan baris baru)</label>
+                                <textarea id="set-misi-text" rows="3" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs"></textarea>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                            <i class="fa-solid fa-floppy-disk"></i><span>Simpan Perubahan Profil</span>
+                        </button>
+                    </form>
+                </div>
+
+                <!-- CMS TAB 3: Akademik & Jurusan -->
+                <div id="cms-tab-majors" class="hidden space-y-6">
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1">Tambah Program Keahlian / Jurusan Baru</h4>
+                        <form onsubmit="handleAddMajor(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Nama Jurusan / Peminatan *</label>
+                                <input id="major-title" type="text" required placeholder="Contoh: MIPA (Matematika & IPA)" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Ikon FontAwesome Class</label>
+                                <input id="major-icon" type="text" required placeholder="fa-solid fa-atom" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-semibold mb-1">Deskripsi Singkat Jurusan *</label>
+                                <textarea id="major-desc" rows="2" required placeholder="Fokus pada penguasaan sains..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs"></textarea>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-xs font-semibold mb-1">Poin Keunggulan (Pisahkan dengan koma)</label>
+                                <input id="major-points" type="text" placeholder="Fisika & Biologi Modern, Kelas Coding & Robotika" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2">
+                                    <i class="fa-solid fa-plus"></i><span>Tambahkan Jurusan</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3">Daftar Jurusan Aktif</h4>
+                        <div id="cms-majors-list" class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CMS TAB 4: Fasilitas Sekolah -->
+                <div id="cms-tab-facilities" class="hidden space-y-6">
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1">Tambah Fasilitas Baru</h4>
+                        <form onsubmit="handleAddFacility(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Nama Fasilitas *</label>
+                                <input id="fac-title" type="text" required placeholder="Laboratorium Komputer iMAC" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Label Badge *</label>
+                                <input id="fac-badge" type="text" required placeholder="Lab iMAC / Sains / Sports" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">URL Foto Fasilitas *</label>
+                                <input id="fac-image" type="url" required placeholder="https://images.unsplash.com/..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="sm:col-span-3">
+                                <label class="block text-xs font-semibold mb-1">Keterangan / Deskripsi Fasilitas *</label>
+                                <textarea id="fac-desc" rows="2" required placeholder="Dilengkapi 100 unit komputer..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs"></textarea>
+                            </div>
+                            <div class="sm:col-span-3">
+                                <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2">
+                                    <i class="fa-solid fa-plus"></i><span>Tambahkan Fasilitas</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3">Daftar Fasilitas Terpasang</h4>
+                        <div id="cms-facilities-list" class="grid grid-cols-1 sm:grid-cols-4 gap-4">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CMS TAB 5: Berita & Pengumuman -->
+                <div id="cms-tab-news" class="hidden space-y-8">
+                    <!-- Posting Berita -->
+                    <div class="space-y-4">
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white">Posting Berita Baru</h4>
+                        <form onsubmit="handleAddNews(event)" class="space-y-3 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Judul Berita *</label>
+                                <input id="news-input-title" type="text" required placeholder="Judul Berita..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold mb-1">Tanggal Publikasi *</label>
+                                    <input id="news-input-date" type="text" required placeholder="20 Agustus 2026" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold mb-1">URL Foto Berita</label>
+                                    <input id="news-input-image" type="url" placeholder="https://images.unsplash.com/..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Isi Berita Lengkap *</label>
+                                <textarea id="news-input-content" rows="3" required placeholder="Tuliskan berita lengkap..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs"></textarea>
+                            </div>
+                            <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2">
+                                <i class="fa-solid fa-plus"></i><span>Publikasikan Berita</span>
+                            </button>
+                        </form>
+
+                        <h5 class="font-bold text-xs text-slate-700 dark:text-slate-300 pt-2">Daftar Berita Terbit</h5>
+                        <div id="cms-news-list" class="space-y-2"></div>
+                    </div>
+
+                    <!-- Posting Pengumuman -->
+                    <div class="space-y-4 border-t border-slate-200 dark:border-slate-800 pt-6">
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white">Posting Pengumuman Resmi</h4>
+                        <form onsubmit="handleAddAnnouncement(event)" class="space-y-3 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Judul Pengumuman *</label>
+                                <input id="ann-title" type="text" required placeholder="Jadwal Ujian Semester / Informasi PPDB" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                                <div>
+                                    <label class="block text-xs font-semibold mb-1">Label Status Badge</label>
+                                    <input id="ann-badge" type="text" required placeholder="Penting / Info PPDB / Kurikulum" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                                </div>
+                                <div>
+                                    <label class="block text-xs font-semibold mb-1">Tautan File Dokumen PDF (Opsional)</label>
+                                    <input id="ann-file" type="url" placeholder="https://..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                                </div>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Ringkasan Pengumuman *</label>
+                                <textarea id="ann-snippet" rows="2" required placeholder="Isi pengumuman singkat..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs"></textarea>
+                            </div>
+                            <button type="submit" class="bg-indigo-600 hover:bg-indigo-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2">
+                                <i class="fa-solid fa-bullhorn"></i><span>Publikasikan Pengumuman</span>
+                            </button>
+                        </form>
+
+                        <h5 class="font-bold text-xs text-slate-700 dark:text-slate-300 pt-2">Daftar Pengumuman Terbit</h5>
+                        <div id="cms-announcements-list" class="space-y-2"></div>
+                    </div>
+                </div>
+
+                <!-- CMS TAB 6: Galeri Foto -->
+                <div id="cms-tab-gallery" class="hidden space-y-6">
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1">Tambah Foto Galeri Baru</h4>
+                        <form onsubmit="handleAddGalleryItem(event)" class="grid grid-cols-1 sm:grid-cols-3 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Judul / Caption Foto *</label>
+                                <input id="gal-title" type="text" required placeholder="Kegiatan Pramuka" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Kategori Foto *</label>
+                                <select id="gal-category" required class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                                    <option value="akademik">Akademik</option>
+                                    <option value="ekstra">Ekstrakurikuler</option>
+                                    <option value="event">Acara & Seni</option>
+                                </select>
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">URL Gambar (Link Foto) *</label>
+                                <input id="gal-image" type="url" required placeholder="https://images.unsplash.com/..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="sm:col-span-3">
+                                <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2">
+                                    <i class="fa-solid fa-upload"></i><span>Tambahkan ke Galeri</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3">Daftar Galeri Terpasang</h4>
+                        <div id="cms-gallery-list" class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CMS TAB 7: Tenaga Pendidik / Guru -->
+                <div id="cms-tab-teachers" class="hidden space-y-6">
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-1">Tambah Data Guru / Pendidik Baru</h4>
+                        <form onsubmit="handleAddTeacher(event)" class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-50 dark:bg-slate-800/50 p-4 rounded-2xl border border-slate-200 dark:border-slate-700">
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Nama & Gelar Guru *</label>
+                                <input id="t-name" type="text" required placeholder="Siti Rahmawati, S.Pd., M.Si." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Mata Pelajaran / Jabatan *</label>
+                                <input id="t-role" type="text" required placeholder="Guru Matematika" class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">URL Foto Profil Guru</label>
+                                <input id="t-image" type="url" placeholder="https://images.unsplash.com/..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold mb-1">Pengalaman / Bio Singkat</label>
+                                <input id="t-desc" type="text" placeholder="Pengalaman 10+ tahun..." class="w-full bg-white dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-xl px-3 py-2 text-xs">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <button type="submit" class="bg-brand-600 hover:bg-brand-700 text-white font-bold px-4 py-2 rounded-xl text-xs transition flex items-center gap-2">
+                                    <i class="fa-solid fa-user-plus"></i><span>Simpan Data Guru</span>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <div>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white mb-3">Daftar Guru Terdaftar</h4>
+                        <div id="cms-teacher-list" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
+                            <!-- Rendered via JS -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CMS TAB 8: Kontak & Lokasi -->
+                <div id="cms-tab-contact" class="hidden space-y-4">
+                    <h4 class="font-bold text-base text-slate-900 dark:text-white">Edit Kontak Sekretariat & Peta Lokasi</h4>
+                    <form onsubmit="handleSaveContactSettings(event)" class="space-y-4">
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Nomor Telepon / Fax</label>
+                                <input id="set-phone" type="text" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Email Resmi</label>
+                                <input id="set-email" type="email" required class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Alamat Lengkap Kampus Sekolah</label>
+                            <textarea id="set-address" rows="2" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs"></textarea>
+                        </div>
+
+                        <div>
+                            <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">URL Embed Google Maps (Src Iframe)</label>
+                            <input id="set-maps-url" type="url" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                        </div>
+
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">No. WhatsApp Admin (Gaya 628...)</label>
+                                <input id="set-wa-num" type="text" placeholder="6281234567890" class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                            <div>
+                                <label class="block text-xs font-semibold text-slate-700 dark:text-slate-300 mb-1">Link Instagram</label>
+                                <input id="set-ig-url" type="url" placeholder="https://instagram.com/..." class="w-full bg-slate-50 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2 text-xs">
+                            </div>
+                        </div>
+
+                        <button type="submit" class="bg-emerald-600 hover:bg-emerald-700 text-white font-bold px-6 py-2.5 rounded-xl text-xs transition flex items-center gap-2">
+                            <i class="fa-solid fa-floppy-disk"></i><span>Simpan Perubahan Kontak</span>
+                        </button>
+                    </form>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript State & Application Logic -->
+    <script>
+        // Storage Keys
+        const STORAGE_KEY_SETTINGS = 'school_site_settings';
+        const STORAGE_KEY_NEWS = 'school_news_data';
+        const STORAGE_KEY_ANNOUNCEMENTS = 'school_announcements_data';
+        const STORAGE_KEY_PPDB = 'school_ppdb_submissions';
+        const STORAGE_KEY_ADMIN = 'school_admin_logged_in';
+        const STORAGE_KEY_GALLERY = 'school_gallery_data';
+        const STORAGE_KEY_TEACHERS = 'school_teachers_data';
+        const STORAGE_KEY_FACILITIES = 'school_facilities_data';
+        const STORAGE_KEY_MAJORS = 'school_majors_data';
+
+        // Initial Default Data
+        const defaultSettings = {
+            schoolName: 'SD Negeri 037 Tarakan',
+            schoolSub: 'NUSANTARA',
+            heroBadge: 'Sekolah Rujukan Nasional Akreditasi A',
+            heroTagline: 'SD Negeri 037 Tarakan berkomitmen memberikan pendidikan berkualitas tinggi berbasis teknologi, imtaq, dan wawasan global untuk mempersiapkan pemimpin masa depan.',
+            bannerText: 'Pendaftaran Peserta Didik Baru (PPDB) T.A 2026/2027 telah dibuka!',
+            principalName: 'Dr. H. Ahmad Wijaya, M.Pd.',
+            principalSpeech: '"Selamat datang di portal resmi SD Negeri 037 Tarakan. Kami meyakini bahwa setiap anak memiliki potensi unik. Tugas kami adalah membimbing, memfasilitasi, dan menginspirasi mereka untuk tumbuh menjadi pribadi yang cerdas secara intelektual, matang secara emosional, dan kuat secara spiritual."',
+            visiText: 'Terwujudnya Lulusan yang Unggul dalam Imtaq dan IPTEK, Berkarakter Pancasila, serta Berdaya Saing Global pada Tahun 2030.',
+            misiText: '1. Menyelenggarakan proses pembelajaran inovatif berbasis teknologi informasi.\n2. Menanamkan nilai-nilai keagamaan dan budi pekerti luhur dalam kehidupan sehari-hari.\n3. Mengembangkan bakat kepemimpinan dan minat kewirausahaan peserta didik.\n4. Menjalin kemitraan internasional untuk mendukung studi lanjut siswa.',
+            phone: '(021) 555-0192 / (021) 555-0193',
+            email: 'info@sdn037tarakan.sch.id',
+            address: 'Jl. Pendidikan No. 123, Kel. Nusantara, Kota Pendidikan, Indonesia 12345',
+            mapsUrl: 'https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d126920.28318854728!2d106.7596291!3d-6.2297465!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x2e69f3e80f631d23%3A0x8221800e39c4a787!2sJakarta!5e0!3m2!1sid!2sid!4v1680000000000!5m2!1sid!2sid',
+            heroImg: 'https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&fit=crop&w=1000&q=80',
+            principalImg: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80',
+            waNum: '6281234567890',
+            igUrl: 'https://instagram.com'
+        };
+
+        const defaultMajors = [
+            {
+                id: 1,
+                title: 'MIPA (Matematika & IPA)',
+                icon: 'fa-solid fa-atom',
+                desc: 'Fokus pada penguasaan konsep sains mutakhir, pemrograman dasar, penelitian laboratorium, serta persiapan kedokteran & teknik.',
+                points: ['Fisika, Kimia, Biologi Modern', 'Kelas Robotika & Coding']
+            },
+            {
+                id: 2,
+                title: 'IPS (Ilmu Pengetahuan Sosial)',
+                icon: 'fa-solid fa-chart-line',
+                desc: 'Membentuk jiwa kepemimpinan, kewirausahaan digital, analisis ekonomi global, hukum, dan sosiologi kemasyarakatan.',
+                points: ['Business Incubator & Entrepreneur', 'Simulasi Debat Hukum & Diplomasi']
+            },
+            {
+                id: 3,
+                title: 'Bahasa & Budaya',
+                icon: 'fa-solid fa-language',
+                desc: 'Penguasaan multabahasa asing (Inggris, Jepang, Mandarin), komunikasi publik, jurnalistik, serta apresiasi seni budaya.',
+                points: ['Native Speaker & TOEFL Prep', 'Program Pertukaran Pelajar']
+            }
+        ];
+
+        const defaultFacilities = [
+            { id: 1, badge: 'Lab iMAC', title: 'Perpustakaan & Lab Komputer', desc: 'Dilengkapi 100+ unit iMac dan akses internet fiber optic 1 Gbps.', image: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80' },
+            { id: 2, badge: 'Sains', title: 'Laboratorium Sains Terpadu', desc: 'Peralatan eksperimen Fisika, Kimia, dan Biologi berstandar riset dasar.', image: 'https://images.unsplash.com/photo-1532094349884-543bc11b234d?auto=format&fit=crop&w=600&q=80' },
+            { id: 3, badge: 'Sports', title: 'GOR & Field Multifungsi', desc: 'Lapangan Basket indoor, Futsal, Bulutangkis, dan panjat tebing.', image: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?auto=format&fit=crop&w=600&q=80' },
+            { id: 4, badge: 'Auditorium', title: 'Auditorium & Masjid', desc: 'Kapasitas 1.000 orang dilengkapi lighting profesional dan AC terpusat.', image: 'https://images.unsplash.com/photo-1519452635265-7b1fbfd1e4e0?auto=format&fit=crop&w=600&q=80' }
+        ];
+
+        const defaultNews = [
+            {
+                id: 1,
+                title: 'SD Negeri 037 Tarakan Gelar Workshop Kecerdasan Buatan (AI) Bagi Siswa',
+                date: '18 Mei 2026',
+                author: 'Humas',
+                image: 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80',
+                snippet: 'Pelatihan ini bertujuan mengenalkan etika dan pemanfaatan artificial intelligence secara bijak untuk meningkatkan efisiensi belajar.',
+                content: 'Pelatihan ini bertujuan mengenalkan etika dan pemanfaatan artificial intelligence secara bijak untuk meningkatkan efisiensi belajar para siswa.'
+            },
+            {
+                id: 2,
+                title: 'Pembukaan Pekan Olahraga & Seni (PORSENI) Antar Kelas Tahun 2026',
+                date: '10 Mei 2026',
+                author: 'OSIS',
+                image: 'https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=600&q=80',
+                snippet: 'Kegiatan PORSENI resmi dibuka dengan parade kostum daur ulang dan penampilan ekstrakurikuler tari tradisional.',
+                content: 'Kegiatan PORSENI resmi dibuka oleh Kepala Sekolah dengan parade memukau dari seluruh kontingen kelas X hingga XII.'
+            }
+        ];
+
+        const defaultAnnouncements = [
+            {
+                id: 1,
+                title: 'Jadwal Ujian Akhir Semester (UAS) Genap T.A 2025/2026',
+                date: '25 Mei 2026',
+                badge: 'Penting',
+                snippet: 'Pelaksanaan UAS akan dimulai pada tanggal 08 Juni s.d 19 Juni 2026. Kartu ujian dapat diunduh via portal siswa.',
+                fileUrl: '#'
+            },
+            {
+                id: 2,
+                title: 'Daftar Berkas Persyaratan Verifikasi Fisik PPDB 2026',
+                date: '20 Mei 2026',
+                badge: 'Info PPDB',
+                snippet: 'Calon siswa yang lulus seleksi administrasi wajib membawa kelengkapan berkas fisik ke sekretariat PPDB.',
+                fileUrl: '#'
+            }
+        ];
+
+        const defaultGallery = [
+            { id: 1, title: 'Kegiatan Praktikum Biologi', category: 'akademik', image: 'https://images.unsplash.com/photo-1509062522246-3755977927d7?auto=format&fit=crop&w=600&q=80' },
+            { id: 2, title: 'Latihan Tim Basket Sekolah', category: 'ekstra', image: 'https://images.unsplash.com/photo-1526676037777-05a232554f77?auto=format&fit=crop&w=600&q=80' },
+            { id: 3, title: 'Pentas Seni & Musik Remaja', category: 'event', image: 'https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=600&q=80' },
+            { id: 4, title: 'Kegiatan Pramuka & Kemah', category: 'ekstra', image: 'https://images.unsplash.com/photo-1517486808906-6ca8b3f04846?auto=format&fit=crop&w=600&q=80' }
+        ];
+
+        const defaultTeachers = [
+            { id: 1, name: 'Siti Rahmawati, S.Pd., M.Si.', role: 'Guru Matematika', desc: 'Pengalaman 12+ tahun mengajar olimpiade matematika.', image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80' },
+            { id: 2, name: 'Budi Santoso, M.A.', role: 'Guru Bahasa Inggris', desc: 'Lulusan Universitas Luar Negeri & Instruktur Debat.', image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&q=80' },
+            { id: 3, name: 'Ir. Heru Kurniawan', role: 'Guru Fisika & Robotika', desc: 'Pembina Tim Robotika Juara Nasional 2025.', image: 'https://images.unsplash.com/photo-1580894732468-058401e13884?auto=format&fit=crop&w=400&q=80' },
+            { id: 4, name: 'Dewi Lestari, S.Si.', role: 'Guru Biologi', desc: 'Aktif melakukan riset keanekaragaman hayati lokal.', image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&q=80' }
+        ];
+
+        // Theme Toggle Logic
+        const themeToggleBtn = document.getElementById('theme-toggle');
+        const themeIcon = document.getElementById('theme-icon');
+        const mobileThemeToggleBtn = document.getElementById('mobile-theme-toggle');
+        const mobileThemeIcon = document.getElementById('mobile-theme-icon');
+
+        function toggleTheme() {
+            if (document.documentElement.classList.contains('dark')) {
+                document.documentElement.classList.remove('dark');
+                themeIcon.className = 'fa-solid fa-moon';
+                if(mobileThemeIcon) mobileThemeIcon.className = 'fa-solid fa-moon';
+                localStorage.setItem('theme', 'light');
+            } else {
+                document.documentElement.classList.add('dark');
+                themeIcon.className = 'fa-solid fa-sun';
+                if(mobileThemeIcon) mobileThemeIcon.className = 'fa-solid fa-sun';
+                localStorage.setItem('theme', 'dark');
+            }
+        }
+
+        if (localStorage.getItem('theme') === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+            document.documentElement.classList.add('dark');
+            themeIcon.className = 'fa-solid fa-sun';
+            if(mobileThemeIcon) mobileThemeIcon.className = 'fa-solid fa-sun';
+        }
+
+        themeToggleBtn.addEventListener('click', toggleTheme);
+        if(mobileThemeToggleBtn) mobileThemeToggleBtn.addEventListener('click', toggleTheme);
+
+        // Mobile Menu Toggle
+        document.getElementById('menu-btn').addEventListener('click', () => {
+            document.getElementById('mobile-menu').classList.toggle('hidden');
+        });
+
+        // FAQ Toggle
+        function toggleFAQ(btn) {
+            const content = btn.nextElementSibling;
+            const icon = btn.querySelector('i');
+            content.classList.toggle('hidden');
+            icon.classList.toggle('rotate-180');
+        }
+
+        // News Tab Switcher
+        function switchNewsTab(tab) {
+            const btnBerita = document.getElementById('btn-tab-berita');
+            const btnPengumuman = document.getElementById('btn-tab-pengumuman');
+            const tabBerita = document.getElementById('tab-berita');
+            const tabPengumuman = document.getElementById('tab-pengumuman');
+
+            if (tab === 'berita') {
+                btnBerita.className = 'px-5 py-2 text-sm font-semibold rounded-lg bg-brand-600 text-white transition';
+                btnPengumuman.className = 'px-5 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+                tabBerita.classList.remove('hidden');
+                tabPengumuman.classList.add('hidden');
+            } else {
+                btnPengumuman.className = 'px-5 py-2 text-sm font-semibold rounded-lg bg-brand-600 text-white transition';
+                btnBerita.className = 'px-5 py-2 text-sm font-semibold rounded-lg text-slate-600 dark:text-slate-400 hover:text-slate-900 dark:hover:text-white transition';
+                tabPengumuman.classList.remove('hidden');
+                tabBerita.classList.add('hidden');
+            }
+        }
+
+        /* -------------------------------------------------------------
+           RENDER FUNCTIONS (Main UI)
+        ------------------------------------------------------------- */
+        function renderSettings() {
+            const settings = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || JSON.stringify(defaultSettings));
+
+            document.getElementById('page-title').innerText = `${settings.schoolName} ${settings.schoolSub} - Cerdas, Berkarakter & Berprestasi`;
+            document.getElementById('header-school-name').innerText = settings.schoolName;
+            document.getElementById('header-school-sub').innerText = settings.schoolSub;
+            document.getElementById('footer-school-title').innerText = `${settings.schoolName} ${settings.schoolSub}`;
+            document.getElementById('footer-copyright').innerText = `${settings.schoolName} ${settings.schoolSub}`;
+            
+            document.getElementById('hero-badge').innerText = settings.heroBadge;
+            document.getElementById('banner-text').innerText = settings.bannerText;
+            document.getElementById('hero-tagline-text').innerText = settings.heroTagline;
+            
+            document.getElementById('principal-name').innerText = settings.principalName;
+            document.getElementById('principal-speech').innerText = settings.principalSpeech;
+            
+            document.getElementById('contact-phone').innerText = settings.phone;
+            document.getElementById('contact-email').innerText = settings.email;
+            document.getElementById('contact-address').innerText = settings.address;
+
+            if(settings.heroImg) document.getElementById('hero-img').src = settings.heroImg;
+            if(settings.principalImg) document.getElementById('principal-img').src = settings.principalImg;
+            if(settings.mapsUrl) document.getElementById('contact-maps-iframe').src = settings.mapsUrl;
+            if(settings.waNum) document.getElementById('floating-wa').href = `https://wa.me/${settings.waNum}?text=Halo%20Admin%20Sekolah`;
+            if(settings.igUrl) document.getElementById('footer-ig').href = settings.igUrl;
+        }
+
+        function renderMajors() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_MAJORS) || JSON.stringify(defaultMajors));
+            const container = document.getElementById('majors-grid');
+            
+            container.innerHTML = list.map(item => `
+                <div class="bg-white dark:bg-slate-900 p-8 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-xl transition group duration-300">
+                    <div class="w-14 h-14 bg-brand-100 dark:bg-brand-900/50 text-brand-600 dark:text-brand-400 rounded-2xl flex items-center justify-center text-2xl font-bold mb-6 group-hover:scale-110 transition">
+                        <i class="${item.icon || 'fa-solid fa-book'}"></i>
+                    </div>
+                    <h3 class="text-xl font-bold text-slate-900 dark:text-white mb-3">${item.title}</h3>
+                    <p class="text-slate-600 dark:text-slate-400 text-sm leading-relaxed mb-6">${item.desc}</p>
+                    <ul class="space-y-2 text-xs font-medium text-slate-500 dark:text-slate-400">
+                        ${(item.points || []).map(pt => `<li class="flex items-center gap-2"><i class="fa-solid fa-check text-brand-500"></i> ${pt}</li>`).join('')}
+                    </ul>
+                </div>
+            `).join('');
+
+            renderCMSMajorsList(list);
+        }
+
+        function renderFacilities() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_FACILITIES) || JSON.stringify(defaultFacilities));
+            const grid = document.getElementById('facility-grid');
+            
+            grid.innerHTML = list.map(item => `
+                <div class="rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 bg-slate-50 dark:bg-slate-800/50 group">
+                    <div class="h-48 overflow-hidden relative">
+                        <img src="${item.image}" onerror="this.src='https://placehold.co/600x400/0284c7/white?text=Fasilitas'" alt="${item.title}" class="w-full h-full object-cover group-hover:scale-110 transition duration-500">
+                        <span class="absolute top-3 left-3 bg-slate-900/70 text-white text-xs px-2.5 py-1 rounded-full backdrop-blur-sm">${item.badge}</span>
+                    </div>
+                    <div class="p-5">
+                        <h4 class="font-bold text-lg text-slate-900 dark:text-white">${item.title}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 mt-2">${item.desc}</p>
+                    </div>
+                </div>
+            `).join('');
+
+            renderCMSFacilitiesList(list);
+        }
+
+        function renderNews() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_NEWS) || JSON.stringify(defaultNews));
+            const container = document.getElementById('tab-berita');
+
+            container.innerHTML = list.map(item => `
+                <article class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 shadow-sm hover:shadow-md transition flex flex-col">
+                    <img src="${item.image || 'https://placehold.co/600x400/0284c7/white?text=Berita'}" onerror="this.src='https://placehold.co/600x400/0284c7/white?text=Berita'" alt="${item.title}" class="h-48 w-full object-cover">
+                    <div class="p-6 flex-1 flex flex-col justify-between">
+                        <div>
+                            <div class="flex items-center gap-3 text-xs text-slate-500 dark:text-slate-400 mb-3">
+                                <span><i class="fa-regular fa-calendar mr-1"></i> ${item.date}</span>
+                                <span>•</span>
+                                <span><i class="fa-regular fa-user mr-1"></i> ${item.author || 'Admin'}</span>
+                            </div>
+                            <h3 class="font-bold text-lg text-slate-900 dark:text-white mb-2 line-clamp-2 hover:text-brand-600 transition">${item.title}</h3>
+                            <p class="text-slate-600 dark:text-slate-400 text-xs line-clamp-3 leading-relaxed mb-4">${item.snippet}</p>
+                        </div>
+                        <button onclick="readNews('${item.title.replace(/'/g, "\\'")}', '${item.date}', '${(item.content || item.snippet).replace(/'/g, "\\'")}')" class="text-brand-600 dark:text-brand-400 font-semibold text-xs inline-flex items-center gap-1 hover:underline">
+                            Baca Selengkapnya &rarr;
+                        </button>
+                    </div>
+                </article>
+            `).join('');
+
+            renderCMSNewsList(list);
+        }
+
+        function renderAnnouncements() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_ANNOUNCEMENTS) || JSON.stringify(defaultAnnouncements));
+            const container = document.getElementById('tab-pengumuman');
+
+            container.innerHTML = list.map(item => `
+                <div class="bg-white dark:bg-slate-900 p-6 rounded-2xl border border-slate-200 dark:border-slate-800 shadow-sm flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
+                    <div class="space-y-1">
+                        <span class="bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-300 text-xs font-bold px-2.5 py-0.5 rounded-full">${item.badge || 'Penting'}</span>
+                        <h4 class="font-bold text-base text-slate-900 dark:text-white">${item.title}</h4>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">${item.snippet}</p>
+                    </div>
+                    ${item.fileUrl && item.fileUrl !== '#' ? `
+                    <a href="${item.fileUrl}" target="_blank" class="bg-slate-100 dark:bg-slate-800 text-slate-700 dark:text-slate-300 font-semibold text-xs px-4 py-2 rounded-xl hover:bg-slate-200 dark:hover:bg-slate-700 transition flex-shrink-0">
+                        <i class="fa-solid fa-download mr-1"></i> Unduh File
+                    </a>` : ''}
+                </div>
+            `).join('');
+
+            renderCMSAnnouncementsList(list);
+        }
+
+        function renderGallery() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_GALLERY) || JSON.stringify(defaultGallery));
+            const grid = document.getElementById('gallery-grid');
+
+            grid.innerHTML = list.map(item => `
+                <div class="gallery-item ${item.category} rounded-2xl overflow-hidden shadow-sm group relative cursor-pointer" onclick="openLightbox('${item.image}', '${item.title.replace(/'/g, "\\'")}')">
+                    <img src="${item.image}" alt="${item.title}" class="w-full h-56 object-cover group-hover:scale-110 transition duration-300" onerror="this.src='https://placehold.co/600x400/0284c7/white?text=Foto'">
+                    <div class="absolute inset-0 bg-slate-900/60 opacity-0 group-hover:opacity-100 transition duration-300 flex items-center justify-center text-white p-4 text-center">
+                        <div>
+                            <i class="fa-solid fa-magnifying-glass-plus text-2xl mb-2"></i>
+                            <p class="font-bold text-xs">${item.title}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+
+            renderCMSGalleryList(list);
+        }
+
+        function filterGallery(category) {
+            const items = document.querySelectorAll('.gallery-item');
+            const filterBtns = document.querySelectorAll('.gallery-filter');
+
+            filterBtns.forEach(btn => {
+                btn.classList.remove('bg-brand-600', 'text-white');
+                btn.classList.add('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+            });
+
+            if (event) {
+                event.target.classList.remove('bg-slate-100', 'dark:bg-slate-800', 'text-slate-600', 'dark:text-slate-300');
+                event.target.classList.add('bg-brand-600', 'text-white');
+            }
+
+            items.forEach(item => {
+                if (category === 'all' || item.classList.contains(category)) {
+                    item.style.display = 'block';
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+        }
+
+        function renderTeachers() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_TEACHERS) || JSON.stringify(defaultTeachers));
+            const grid = document.getElementById('teacher-grid');
+
+            grid.innerHTML = list.map(item => `
+                <div class="bg-white dark:bg-slate-900 rounded-2xl overflow-hidden border border-slate-200 dark:border-slate-800 text-center p-6 shadow-sm">
+                    <img src="${item.image || 'https://placehold.co/400x400/0284c7/white?text=Guru'}" onerror="this.src='https://placehold.co/400x400/0284c7/white?text=Guru'" alt="${item.name}" class="w-28 h-28 rounded-full mx-auto object-cover mb-4 ring-4 ring-brand-100 dark:ring-slate-800">
+                    <h4 class="font-bold text-slate-900 dark:text-white text-base">${item.name}</h4>
+                    <p class="text-brand-600 dark:text-brand-400 text-xs font-semibold mt-1">${item.role}</p>
+                    <p class="text-slate-500 text-xs mt-2">${item.desc}</p>
+                </div>
+            `).join('');
+
+            renderCMSTeacherList(list);
+        }
+
+        /* -------------------------------------------------------------
+           CMS ADMIN LIST RENDERERS & CRUD
+        ------------------------------------------------------------- */
+        function renderCMSMajorsList(list) {
+            const container = document.getElementById('cms-majors-list');
+            if(!container) return;
+            container.innerHTML = list.map((item, idx) => `
+                <div class="bg-slate-100 dark:bg-slate-800 p-4 rounded-xl relative flex flex-col justify-between">
+                    <div>
+                        <h5 class="font-bold text-xs text-slate-900 dark:text-white">${item.title}</h5>
+                        <p class="text-[10px] text-slate-500 mt-1 line-clamp-2">${item.desc}</p>
+                    </div>
+                    <button onclick="deleteMajorItem(${idx})" class="mt-3 bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-300 py-1 px-3 rounded-lg text-xs font-bold hover:bg-red-200 transition">
+                        <i class="fa-solid fa-trash mr-1"></i> Hapus
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function handleAddMajor(e) {
+            e.preventDefault();
+            const title = document.getElementById('major-title').value;
+            const icon = document.getElementById('major-icon').value || 'fa-solid fa-book';
+            const desc = document.getElementById('major-desc').value;
+            const pointsStr = document.getElementById('major-points').value;
+            const points = pointsStr ? pointsStr.split(',').map(s => s.trim()) : [];
+
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_MAJORS) || JSON.stringify(defaultMajors));
+            list.push({ id: Date.now(), title, icon, desc, points });
+            localStorage.setItem(STORAGE_KEY_MAJORS, JSON.stringify(list));
+
+            renderMajors();
+            document.getElementById('major-title').value = '';
+            document.getElementById('major-desc').value = '';
+            document.getElementById('major-points').value = '';
+            alert('Jurusan baru berhasil ditambahkan!');
+        }
+
+        function deleteMajorItem(index) {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_MAJORS) || JSON.stringify(defaultMajors));
+            list.splice(index, 1);
+            localStorage.setItem(STORAGE_KEY_MAJORS, JSON.stringify(list));
+            renderMajors();
+        }
+
+        function renderCMSFacilitiesList(list) {
+            const container = document.getElementById('cms-facilities-list');
+            if(!container) return;
+            container.innerHTML = list.map((item, idx) => `
+                <div class="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group">
+                    <img src="${item.image}" class="w-full h-24 object-cover">
+                    <div class="p-2 bg-white dark:bg-slate-900 text-xs">
+                        <p class="font-bold truncate text-slate-900 dark:text-white">${item.title}</p>
+                        <span class="text-[10px] text-slate-500">${item.badge}</span>
+                    </div>
+                    <button onclick="deleteFacilityItem(${idx})" class="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-lg text-xs shadow hover:bg-red-700 transition">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function handleAddFacility(e) {
+            e.preventDefault();
+            const title = document.getElementById('fac-title').value;
+            const badge = document.getElementById('fac-badge').value;
+            const image = document.getElementById('fac-image').value;
+            const desc = document.getElementById('fac-desc').value;
+
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_FACILITIES) || JSON.stringify(defaultFacilities));
+            list.push({ id: Date.now(), title, badge, image, desc });
+            localStorage.setItem(STORAGE_KEY_FACILITIES, JSON.stringify(list));
+
+            renderFacilities();
+            document.getElementById('fac-title').value = '';
+            document.getElementById('fac-badge').value = '';
+            document.getElementById('fac-image').value = '';
+            document.getElementById('fac-desc').value = '';
+            alert('Fasilitas berhasil ditambahkan!');
+        }
+
+        function deleteFacilityItem(index) {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_FACILITIES) || JSON.stringify(defaultFacilities));
+            list.splice(index, 1);
+            localStorage.setItem(STORAGE_KEY_FACILITIES, JSON.stringify(list));
+            renderFacilities();
+        }
+
+        function renderCMSNewsList(list) {
+            const container = document.getElementById('cms-news-list');
+            if(!container) return;
+            container.innerHTML = list.map((item, idx) => `
+                <div class="flex justify-between items-center bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-xs">
+                    <div class="truncate mr-2">
+                        <strong class="text-slate-900 dark:text-white block truncate">${item.title}</strong>
+                        <span class="text-[10px] text-slate-500">${item.date}</span>
+                    </div>
+                    <button onclick="deleteNewsItem(${idx})" class="text-red-500 hover:text-red-700 p-1 flex-shrink-0">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function handleAddNews(e) {
+            e.preventDefault();
+            const title = document.getElementById('news-input-title').value;
+            const date = document.getElementById('news-input-date').value;
+            const image = document.getElementById('news-input-image').value || 'https://images.unsplash.com/photo-1524178232363-1fb2b075b655?auto=format&fit=crop&w=600&q=80';
+            const content = document.getElementById('news-input-content').value;
+
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_NEWS) || JSON.stringify(defaultNews));
+            list.unshift({ id: Date.now(), title, date, author: 'Admin Sekolah', image, snippet: content.substring(0, 100) + '...', content });
+            localStorage.setItem(STORAGE_KEY_NEWS, JSON.stringify(list));
+
+            renderNews();
+            document.getElementById('news-input-title').value = '';
+            document.getElementById('news-input-content').value = '';
+            alert('Berita berhasil dipublikasikan!');
+        }
+
+        function deleteNewsItem(index) {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_NEWS) || JSON.stringify(defaultNews));
+            list.splice(index, 1);
+            localStorage.setItem(STORAGE_KEY_NEWS, JSON.stringify(list));
+            renderNews();
+        }
+
+        function renderCMSAnnouncementsList(list) {
+            const container = document.getElementById('cms-announcements-list');
+            if(!container) return;
+            container.innerHTML = list.map((item, idx) => `
+                <div class="flex justify-between items-center bg-slate-100 dark:bg-slate-800 p-3 rounded-xl text-xs">
+                    <div class="truncate mr-2">
+                        <strong class="text-slate-900 dark:text-white block truncate">${item.title}</strong>
+                        <span class="text-[10px] text-indigo-500 font-bold">${item.badge}</span>
+                    </div>
+                    <button onclick="deleteAnnouncementItem(${idx})" class="text-red-500 hover:text-red-700 p-1 flex-shrink-0">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function handleAddAnnouncement(e) {
+            e.preventDefault();
+            const title = document.getElementById('ann-title').value;
+            const badge = document.getElementById('ann-badge').value || 'Penting';
+            const fileUrl = document.getElementById('ann-file').value || '#';
+            const snippet = document.getElementById('ann-snippet').value;
+
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_ANNOUNCEMENTS) || JSON.stringify(defaultAnnouncements));
+            list.unshift({ id: Date.now(), title, date: new Date().toLocaleDateString('id-ID'), badge, snippet, fileUrl });
+            localStorage.setItem(STORAGE_KEY_ANNOUNCEMENTS, JSON.stringify(list));
+
+            renderAnnouncements();
+            document.getElementById('ann-title').value = '';
+            document.getElementById('ann-snippet').value = '';
+            alert('Pengumuman resmi berhasil diterbitkan!');
+        }
+
+        function deleteAnnouncementItem(index) {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_ANNOUNCEMENTS) || JSON.stringify(defaultAnnouncements));
+            list.splice(index, 1);
+            localStorage.setItem(STORAGE_KEY_ANNOUNCEMENTS, JSON.stringify(list));
+            renderAnnouncements();
+        }
+
+        function renderCMSGalleryList(list) {
+            const container = document.getElementById('cms-gallery-list');
+            if(!container) return;
+            container.innerHTML = list.map((item, idx) => `
+                <div class="relative rounded-xl overflow-hidden border border-slate-200 dark:border-slate-800 group">
+                    <img src="${item.image}" class="w-full h-24 object-cover">
+                    <div class="p-2 bg-white dark:bg-slate-900 text-xs">
+                        <p class="font-bold truncate text-slate-900 dark:text-white">${item.title}</p>
+                        <span class="text-[10px] text-slate-500 uppercase">${item.category}</span>
+                    </div>
+                    <button onclick="deleteGalleryItem(${idx})" class="absolute top-2 right-2 bg-red-600 text-white p-1.5 rounded-lg text-xs shadow hover:bg-red-700 transition">
+                        <i class="fa-solid fa-trash"></i>
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function handleAddGalleryItem(e) {
+            e.preventDefault();
+            const title = document.getElementById('gal-title').value;
+            const category = document.getElementById('gal-category').value;
+            const image = document.getElementById('gal-image').value;
+
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_GALLERY) || JSON.stringify(defaultGallery));
+            list.unshift({ id: Date.now(), title, category, image });
+            localStorage.setItem(STORAGE_KEY_GALLERY, JSON.stringify(list));
+
+            renderGallery();
+            document.getElementById('gal-title').value = '';
+            document.getElementById('gal-image').value = '';
+            alert('Foto galeri berhasil ditambahkan!');
+        }
+
+        function deleteGalleryItem(index) {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_GALLERY) || JSON.stringify(defaultGallery));
+            list.splice(index, 1);
+            localStorage.setItem(STORAGE_KEY_GALLERY, JSON.stringify(list));
+            renderGallery();
+        }
+
+        function renderCMSTeacherList(list) {
+            const container = document.getElementById('cms-teacher-list');
+            if(!container) return;
+            container.innerHTML = list.map((item, idx) => `
+                <div class="bg-slate-100 dark:bg-slate-800 p-3 rounded-xl relative flex flex-col justify-between">
+                    <div>
+                        <img src="${item.image}" class="w-14 h-14 rounded-full mx-auto object-cover mb-2">
+                        <h5 class="font-bold text-xs text-slate-900 dark:text-white text-center">${item.name}</h5>
+                        <p class="text-[10px] text-brand-600 dark:text-brand-400 text-center">${item.role}</p>
+                    </div>
+                    <button onclick="deleteTeacherItem(${idx})" class="mt-3 bg-red-100 text-red-600 dark:bg-red-900/40 dark:text-red-300 py-1 rounded-lg text-xs font-bold hover:bg-red-200 transition">
+                        <i class="fa-solid fa-trash mr-1"></i> Hapus
+                    </button>
+                </div>
+            `).join('');
+        }
+
+        function handleAddTeacher(e) {
+            e.preventDefault();
+            const name = document.getElementById('t-name').value;
+            const role = document.getElementById('t-role').value;
+            const image = document.getElementById('t-image').value || 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&q=80';
+            const desc = document.getElementById('t-desc').value || 'Tenaga Pendidik Pengalaman.';
+
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_TEACHERS) || JSON.stringify(defaultTeachers));
+            list.unshift({ id: Date.now(), name, role, image, desc });
+            localStorage.setItem(STORAGE_KEY_TEACHERS, JSON.stringify(list));
+
+            renderTeachers();
+            document.getElementById('t-name').value = '';
+            document.getElementById('t-role').value = '';
+            document.getElementById('t-image').value = '';
+            alert('Data guru berhasil disimpan!');
+        }
+
+        function deleteTeacherItem(index) {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_TEACHERS) || JSON.stringify(defaultTeachers));
+            list.splice(index, 1);
+            localStorage.setItem(STORAGE_KEY_TEACHERS, JSON.stringify(list));
+            renderTeachers();
+        }
+
+        /* -------------------------------------------------------------
+           MODAL & ADMIN CMS NAVIGATION
+        ------------------------------------------------------------- */
+        function openModal(type) {
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+            const settings = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || JSON.stringify(defaultSettings));
+
+            if (type === 'modal-visi-misi') {
+                const misiItems = (settings.misiText || '').split('\n').filter(Boolean);
+                modalContent.innerHTML = `
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white mb-4">Visi & Misi Sekolah</h3>
+                    <div class="space-y-4 text-sm text-slate-600 dark:text-slate-300">
+                        <div>
+                            <h4 class="font-bold text-brand-600 dark:text-brand-400 text-base">Visi:</h4>
+                            <p class="mt-1 font-medium italic">"${settings.visiText}"</p>
+                        </div>
+                        <div>
+                            <h4 class="font-bold text-brand-600 dark:text-brand-400 text-base">Misi:</h4>
+                            <ul class="list-disc pl-5 mt-1 space-y-1">
+                                ${misiItems.map(item => `<li>${item}</li>`).join('')}
+                            </ul>
+                        </div>
+                    </div>
+                `;
+            }
+
+            modalContainer.classList.remove('hidden');
+            modalContainer.classList.add('flex');
+        }
+
+        function readNews(title, date, content) {
+            const modalContainer = document.getElementById('modal-container');
+            const modalContent = document.getElementById('modal-content');
+
+            modalContent.innerHTML = `
+                <span class="text-xs text-brand-600 dark:text-brand-400 font-semibold">${date}</span>
+                <h3 class="text-xl font-bold text-slate-900 dark:text-white mt-1 mb-4">${title}</h3>
+                <p class="text-sm text-slate-600 dark:text-slate-300 leading-relaxed whitespace-pre-line">${content}</p>
+                <button onclick="closeModal()" class="mt-6 bg-brand-600 text-white font-semibold px-5 py-2.5 rounded-xl text-xs">Tutup</button>
+            `;
+
+            modalContainer.classList.remove('hidden');
+            modalContainer.classList.add('flex');
+        }
+
+        function closeModal() {
+            document.getElementById('modal-container').classList.add('hidden');
+            document.getElementById('modal-container').classList.remove('flex');
+        }
+
+        function openLightbox(imgSrc, caption) {
+            const modal = document.getElementById('lightbox-modal');
+            document.getElementById('lightbox-img').src = imgSrc;
+            document.getElementById('lightbox-caption').innerText = caption;
+            modal.classList.remove('hidden');
+            modal.classList.add('flex');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox-modal').classList.add('hidden');
+            document.getElementById('lightbox-modal').classList.remove('flex');
+        }
+
+        // Admin Auth
+        function checkAdminSession() {
+            const isAdmin = localStorage.getItem(STORAGE_KEY_ADMIN) === 'true';
+            document.getElementById('admin-bar').classList.toggle('hidden', !isAdmin);
+        }
+
+        function openAdminLogin() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+            document.getElementById('admin-login-modal').classList.add('flex');
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-login-modal').classList.remove('flex');
+            document.getElementById('admin-login-error').classList.add('hidden');
+        }
+
+        function handleAdminLogin(e) {
+            e.preventDefault();
+            const user = document.getElementById('admin-username').value;
+            const pass = document.getElementById('admin-password').value;
+
+            if (user === 'admin' && pass === 'admin123') {
+                localStorage.setItem(STORAGE_KEY_ADMIN, 'true');
+                closeAdminLogin();
+                checkAdminSession();
+                openAdminDashboard();
+            } else {
+                document.getElementById('admin-login-error').classList.remove('hidden');
+            }
+        }
+
+        function logoutAdmin() {
+            localStorage.removeItem(STORAGE_KEY_ADMIN);
+            checkAdminSession();
+            closeAdminDashboard();
+        }
+
+        function openAdminDashboard() {
+            renderPPDBTable();
+            populateProfileForm();
+            populateContactForm();
+            document.getElementById('admin-dashboard-modal').classList.remove('hidden');
+            document.getElementById('admin-dashboard-modal').classList.add('flex');
+        }
+
+        function closeAdminDashboard() {
+            document.getElementById('admin-dashboard-modal').classList.add('hidden');
+            document.getElementById('admin-dashboard-modal').classList.remove('flex');
+        }
+
+        function switchCMSTab(tab) {
+            const tabs = ['ppdb', 'profile', 'majors', 'facilities', 'news', 'gallery', 'teachers', 'contact'];
+            tabs.forEach(t => {
+                document.getElementById(`cms-tab-${t}`).classList.add('hidden');
+                document.getElementById(`cms-tab-${t}-btn`).className = "py-3 px-3 text-xs font-bold border-b-2 border-transparent text-slate-500 hover:text-slate-800 dark:hover:text-slate-200 flex items-center gap-1.5 whitespace-nowrap";
+            });
+
+            document.getElementById(`cms-tab-${tab}`).classList.remove('hidden');
+            document.getElementById(`cms-tab-${tab}-btn`).className = "py-3 px-3 text-xs font-bold border-b-2 border-brand-600 text-brand-600 flex items-center gap-1.5 whitespace-nowrap";
+        }
+
+        function populateProfileForm() {
+            const s = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || JSON.stringify(defaultSettings));
+            document.getElementById('set-school-name').value = s.schoolName;
+            document.getElementById('set-school-sub').value = s.schoolSub;
+            document.getElementById('set-hero-badge').value = s.heroBadge;
+            document.getElementById('set-banner-text').value = s.bannerText;
+            document.getElementById('set-hero-tagline').value = s.heroTagline;
+            document.getElementById('set-hero-img').value = s.heroImg || '';
+            document.getElementById('set-principal-img').value = s.principalImg || '';
+            document.getElementById('set-principal-name').value = s.principalName;
+            document.getElementById('set-principal-speech').value = s.principalSpeech;
+            document.getElementById('set-visi-text').value = s.visiText;
+            document.getElementById('set-misi-text').value = s.misiText;
+        }
+
+        function handleSaveProfileSettings(e) {
+            e.preventDefault();
+            const existing = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || JSON.stringify(defaultSettings));
+            const updated = {
+                ...existing,
+                schoolName: document.getElementById('set-school-name').value,
+                schoolSub: document.getElementById('set-school-sub').value,
+                heroBadge: document.getElementById('set-hero-badge').value,
+                bannerText: document.getElementById('set-banner-text').value,
+                heroTagline: document.getElementById('set-hero-tagline').value,
+                heroImg: document.getElementById('set-hero-img').value,
+                principalImg: document.getElementById('set-principal-img').value,
+                principalName: document.getElementById('set-principal-name').value,
+                principalSpeech: document.getElementById('set-principal-speech').value,
+                visiText: document.getElementById('set-visi-text').value,
+                misiText: document.getElementById('set-misi-text').value
+            };
+
+            localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(updated));
+            renderSettings();
+            alert('Profil sekolah berhasil disimpan!');
+        }
+
+        function populateContactForm() {
+            const s = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || JSON.stringify(defaultSettings));
+            document.getElementById('set-phone').value = s.phone;
+            document.getElementById('set-email').value = s.email;
+            document.getElementById('set-address').value = s.address;
+            document.getElementById('set-maps-url').value = s.mapsUrl || '';
+            document.getElementById('set-wa-num').value = s.waNum || '6281234567890';
+            document.getElementById('set-ig-url').value = s.igUrl || '';
+        }
+
+        function handleSaveContactSettings(e) {
+            e.preventDefault();
+            const existing = JSON.parse(localStorage.getItem(STORAGE_KEY_SETTINGS) || JSON.stringify(defaultSettings));
+            const updated = {
+                ...existing,
+                phone: document.getElementById('set-phone').value,
+                email: document.getElementById('set-email').value,
+                address: document.getElementById('set-address').value,
+                mapsUrl: document.getElementById('set-maps-url').value,
+                waNum: document.getElementById('set-wa-num').value,
+                igUrl: document.getElementById('set-ig-url').value
+            };
+
+            localStorage.setItem(STORAGE_KEY_SETTINGS, JSON.stringify(updated));
+            renderSettings();
+            alert('Informasi kontak berhasil disimpan!');
+        }
+
+        // PPDB Logic
+        function handlePPDBSubmit(e) {
+            e.preventDefault();
+            const nama = document.getElementById('ppdb-nama').value;
+            const nisn = document.getElementById('ppdb-nisn').value;
+            const asal = document.getElementById('ppdb-asal').value;
+            const jurusan = document.getElementById('ppdb-jurusan').value;
+            const wa = document.getElementById('ppdb-wa').value;
+            const nilai = document.getElementById('ppdb-nilai').value;
+            const alamat = document.getElementById('ppdb-alamat').value;
+            const regNum = 'PPDB-' + Math.floor(100000 + Math.random() * 900000);
+
+            const submission = { regNum, nama, nisn, asal, jurusan, wa, nilai, alamat, date: new Date().toLocaleDateString('id-ID') };
+            const existing = JSON.parse(localStorage.getItem(STORAGE_KEY_PPDB) || '[]');
+            existing.unshift(submission);
+            localStorage.setItem(STORAGE_KEY_PPDB, JSON.stringify(existing));
+
+            renderPPDBTable();
+
+            const modalContent = document.getElementById('modal-content');
+            modalContent.innerHTML = `
+                <div class="text-center space-y-4">
+                    <div class="w-16 h-16 bg-emerald-100 text-emerald-600 rounded-full flex items-center justify-center mx-auto text-3xl">
+                        <i class="fa-solid fa-circle-check"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-slate-900 dark:text-white">Pendaftaran Berhasil!</h3>
+                    <p class="text-xs text-slate-600 dark:text-slate-300">
+                        Nomor Registrasi Anda: <strong class="text-brand-600 dark:text-brand-400 text-base block mt-1">${regNum}</strong>
+                    </p>
+                    <button onclick="closeModal(); document.getElementById('ppdbForm').reset();" class="bg-brand-600 hover:bg-brand-700 text-white font-semibold px-6 py-3 rounded-xl text-sm transition">Selesai</button>
+                </div>
+            `;
+            document.getElementById('modal-container').classList.remove('hidden');
+            document.getElementById('modal-container').classList.add('flex');
+        }
+
+        function renderPPDBTable() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_PPDB) || '[]');
+            const tbody = document.getElementById('ppdb-table-body');
+            document.getElementById('ppdb-badge-count').innerText = list.length;
+
+            if (list.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="8" class="p-6 text-center text-slate-400">Belum ada pendaftar.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = list.map((item, idx) => `
+                <tr class="hover:bg-slate-50 dark:hover:bg-slate-800/50">
+                    <td class="p-3 font-mono font-bold text-brand-600">${item.regNum}</td>
+                    <td class="p-3 font-semibold text-slate-900 dark:text-white">${item.nama}</td>
+                    <td class="p-3">${item.nisn}</td>
+                    <td class="p-3">${item.asal}</td>
+                    <td class="p-3"><span class="bg-brand-100 text-brand-700 px-2 py-0.5 rounded font-bold">${item.jurusan}</span></td>
+                    <td class="p-3">${item.wa}</td>
+                    <td class="p-3 font-bold">${item.nilai}</td>
+                    <td class="p-3">
+                        <button onclick="deletePPDBItem(${idx})" class="text-red-500 hover:text-red-700 p-1"><i class="fa-solid fa-trash"></i></button>
+                    </td>
+                </tr>
+            `).join('');
+        }
+
+        function deletePPDBItem(idx) {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_PPDB) || '[]');
+            list.splice(idx, 1);
+            localStorage.setItem(STORAGE_KEY_PPDB, JSON.stringify(list));
+            renderPPDBTable();
+        }
+
+        function clearAllPPDB() {
+            if (confirm('Kosongkan semua data PPDB?')) {
+                localStorage.removeItem(STORAGE_KEY_PPDB);
+                renderPPDBTable();
+            }
+        }
+
+        function exportPPDBToCSV() {
+            const list = JSON.parse(localStorage.getItem(STORAGE_KEY_PPDB) || '[]');
+            if (list.length === 0) return alert('Data kosong!');
+            let csv = "data:text/csv;charset=utf-8,No Reg,Nama,NISN,Asal,Jurusan,WA,Nilai,Alamat,Tanggal\n";
+            list.forEach(i => csv += `"${i.regNum}","${i.nama}","${i.nisn}","${i.asal}","${i.jurusan}","${i.wa}","${i.nilai}","${i.alamat}","${i.date}"\n`);
+            const a = document.createElement('a');
+            a.href = encodeURI(csv);
+            a.download = 'Rekap_PPDB.csv';
+            a.click();
+        }
+
+        // Shortcut Ctrl + Shift + A
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey && e.shiftKey && (e.key === 'A' || e.key === 'a')) {
+                e.preventDefault();
+                if (localStorage.getItem(STORAGE_KEY_ADMIN) === 'true') openAdminDashboard();
+                else openAdminLogin();
+            }
+        });
+
+        // Initialize App
+        window.onload = function() {
+            renderSettings();
+            renderMajors();
+            renderFacilities();
+            renderNews();
+            renderAnnouncements();
+            renderGallery();
+            renderTeachers();
+            checkAdminSession();
+        };
+    </script>
+</body>
+</html>
